@@ -1,0 +1,9 @@
+port=8080
+log_dir="./log"
+log_level="debug"
+
+[postgresql]
+user="xzy"
+password=""
+addr="127.0.0.1:5432"
+db_name="tantan"
