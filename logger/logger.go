@@ -13,7 +13,6 @@ type LoggerGroup struct {
 	ErrorLogger  *logrus.Logger
 }
 
-// TODO: 日志命名提起成配置项（matrix 组件的运行时环境也应该统一）
 const (
 	accessLogName = "access.log"
 	errorLogName  = "error.log"

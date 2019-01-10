@@ -53,9 +53,6 @@ var errorToRestStatusCode = map[error]int32{
 	errors.ErrUnknown:      UnknownInternalError,
 }
 
-// REST 错误返回
-// 只有 err != nil 的时候才返回错误的描述性文本信息（返回成功的文本描述没有太大价值）
-// 如果 err 不在 errorToRestStatusCode 表中，默认为 errors.ErrUnknown 错误
 func responseWithError(c *gin.Context, err error) {
 	if err != nil {
 		status, ok := errorToRestStatusCode[err]
@@ -75,8 +72,6 @@ func responseWithError(c *gin.Context, err error) {
 	c.Abort()
 }
 
-// REST 返回 items 数据，items 是一个列表数据
-// 调用这个接口时，默认 status = Success。只有这样，调用这个接口才有价值
 func responseWithItems(c *gin.Context, items interface{}) {
 	if items != nil {
 		c.JSON(restStatusCodeToHTTPStatusCode[Success], items)
