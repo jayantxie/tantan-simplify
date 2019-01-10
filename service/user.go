@@ -9,7 +9,7 @@ import (
 
 func CreateUser(name string) (userResult types.User, err error) {
 	user, err := model.AddUser(name)
-	if err != nil{
+	if err != nil {
 		return userResult, err
 	}
 	userResult.Id = strconv.Itoa(user.Id)
@@ -20,7 +20,7 @@ func CreateUser(name string) (userResult types.User, err error) {
 
 func ListAllUsers() (userList []types.User, err error) {
 	users, err := model.ListAllUsers()
-	if err != nil{
+	if err != nil {
 		return nil, err
 	}
 	userList = make([]types.User, len(users))

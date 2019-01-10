@@ -17,7 +17,7 @@ type RelationshipHandlerImpl struct {
 }
 
 func GetRelationshipHandler(userId int) RelationshipHandler {
-	return &RelationshipHandlerImpl{userId:userId}
+	return &RelationshipHandlerImpl{userId: userId}
 }
 
 func (rh *RelationshipHandlerImpl) ListRelationships() ([]types.Relationship, error) {
@@ -37,7 +37,7 @@ func (rh *RelationshipHandlerImpl) ListRelationships() ([]types.Relationship, er
 func (rh *RelationshipHandlerImpl) UpdateRelationship(toUserId int, state constant.State) (types.Relationship, error) {
 	var relationshipResult types.Relationship
 	relationship, err := model.UpdateRelationship(rh.userId, toUserId, state)
-	if err != nil{
+	if err != nil {
 		return relationshipResult, err
 	}
 	relationshipResult.UserId = strconv.Itoa(relationship.ToUserId)
