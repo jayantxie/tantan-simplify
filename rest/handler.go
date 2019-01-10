@@ -117,7 +117,7 @@ func UpdateRelationship(c *gin.Context) {
 	relationshipHandler := service.GetRelationshipHandler(fromUserId)
 
 	relationshipResult, err := relationshipHandler.UpdateRelationship(toUserId, state)
-	if err != nil{
+	if err != nil {
 		httpLogger.WithFields(logrus.Fields{
 			"from_user_id": fromUserId,
 			"to_user_id":   toUserId,

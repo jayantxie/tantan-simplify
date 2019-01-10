@@ -6,15 +6,15 @@ import (
 )
 
 type Users struct {
-	Id   int  `sql:"id"`
+	Id   int    `sql:"id"`
 	Name string `sql:"name"`
 }
 
 type Relationships struct {
-	Id         int `sql:"id"`
-	FromUserId int `sql:"from_user_id"`
-	ToUserId   int `sql:"to_user_id"`
-	State      constant.State  `sql:"state"` // 1: liked    2: disliked    3: matched
+	Id         int            `sql:"id"`
+	FromUserId int            `sql:"from_user_id"`
+	ToUserId   int            `sql:"to_user_id"`
+	State      constant.State `sql:"state"` // 1: liked    2: disliked    3: matched
 }
 
 func AddUser(name string) (Users, error) {

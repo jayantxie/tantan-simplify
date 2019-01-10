@@ -3,7 +3,7 @@ package constant
 type State int8
 
 const (
-	Liked State  = iota+1
+	Liked State = iota + 1
 	Disliked
 	Matched
 	UnknownState
