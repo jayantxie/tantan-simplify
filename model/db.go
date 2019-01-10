@@ -6,7 +6,7 @@ import (
 	"tantan-simplify/config"
 )
 
-// TODO: connect thread numbers ?
+// TODO: connect goroutine numbers ?
 var db *pg.DB
 
 func MustSetDB(postgreSQLConfig *config.PostgreSQL) error {

@@ -12,7 +12,7 @@ execute command below：
 $ ./scripts/generate-version.sh v0.0.1 ; ./build.sh
 ```
 
-after compiled, work into `_build`，run：
+after compiled, go to `_build`，run：
 
 ```shell
 $ cd _build
