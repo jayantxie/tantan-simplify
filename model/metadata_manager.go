@@ -50,20 +50,25 @@ func UpdateRelationship(fromUserId, toUserId int, state constant.State) (relatio
 	var relationship Relationships
 	var reversedRelationship Relationships
 	reversedLiked := false
+	// transaction controller
 	tx, err := db.Begin()
 	if err != nil {
 		return relationshipResult, err
 	}
+	// check whether the other one like the one, lock the row for update
 	_, err = tx.QueryOne(&reversedRelationship, `select id, from_user_id, to_user_id, state from relationships where from_user_id=? and to_user_id=? for update`, toUserId, fromUserId)
 	if err == nil && reversedRelationship.State == constant.Liked {
 		reversedLiked = true
 	}
+	// check whether the relationship has been established, if true, throw operated error
 	_, err = db.QueryOne(&relationship, `select id, from_user_id, to_user_id, state from relationships where from_user_id=? and to_user_id=?`, fromUserId, toUserId)
 	if err != nil {
+		// both state are liked, update to matched
 		if reversedLiked && state == constant.Liked {
 			reversedRelationship.State = constant.Matched
 			err = tx.Update(&reversedRelationship)
 			if err != nil {
+				// if failed, rollback
 				err1 := tx.Rollback()
 				if err1 != nil {
 					return relationshipResult, err1
@@ -92,6 +97,7 @@ func UpdateRelationship(fromUserId, toUserId int, state constant.State) (relatio
 				return relationshipResult, err
 			}
 		}
+		// commit transaction
 		err = tx.Commit()
 		return relationship, err
 	}
