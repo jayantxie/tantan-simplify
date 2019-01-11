@@ -34,7 +34,7 @@ func (bt *BackTrackHook) Fire(entry *logrus.Entry) error {
 	funcName := "unknown"
 	for {
 		frame, more := frames.Next()
-		if !strings.HasPrefix(frame.Function, "matrix-autoscaler/vendor") || strings.HasPrefix(frame.Function, "matrix-autoscaler/vendor/matrix-common") {
+		if !strings.HasPrefix(frame.Function, "tantan-simplify/vendor") {
 			file = frame.File
 			line = frame.Line
 			funcName = frame.Function
